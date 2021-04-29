@@ -1,6 +1,6 @@
 package br.com.examplo.vendas.rest;
 
-import java.util.Optional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,13 +31,13 @@ public class ClienteController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Cliente salvar(@RequestBody Cliente cliente) {
+	public Cliente salvar(@RequestBody @Valid Cliente cliente) {
 		return repository.save(cliente);
 	}
 
 	@GetMapping("{id}")
 	public Cliente encontrarPorId(@PathVariable Integer id) {
-		return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 
 	@DeleteMapping("{id}")
@@ -46,7 +46,7 @@ public class ClienteController {
 		repository.findById(id).map(cliente -> {
 			repository.delete(cliente);
 			return Void.TYPE;
-		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 
 	@PutMapping("{id}")
@@ -56,6 +56,6 @@ public class ClienteController {
 			cliente.setNome(clienteAtualizado.getNome());
 			cliente.setCpf(clienteAtualizado.getCpf());
 			return repository.save(clienteAtualizado);
-		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 }
