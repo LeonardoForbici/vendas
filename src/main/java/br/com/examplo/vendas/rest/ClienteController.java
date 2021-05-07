@@ -1,9 +1,12 @@
 package br.com.examplo.vendas.rest;
 
+import java.time.LocalDate;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,7 @@ import br.com.examplo.vendas.model.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/api/clientes")
+@CrossOrigin("http://localhost:4200")
 public class ClienteController {
 
 	private final ClienteRepository repository;
@@ -29,7 +33,7 @@ public class ClienteController {
 		this.repository = repository;
 	}
 
-	@PostMapping
+	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar(@RequestBody @Valid Cliente cliente) {
 		return repository.save(cliente);
