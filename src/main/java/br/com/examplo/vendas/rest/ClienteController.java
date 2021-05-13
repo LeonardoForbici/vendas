@@ -1,6 +1,6 @@
 package br.com.examplo.vendas.rest;
 
-import java.time.LocalDate;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -61,5 +61,10 @@ public class ClienteController {
 			cliente.setCpf(clienteAtualizado.getCpf());
 			return repository.save(clienteAtualizado);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+	}
+	
+	@GetMapping
+	public List<Cliente> obterTodos(){
+		return repository.findAll();
 	}
 }
