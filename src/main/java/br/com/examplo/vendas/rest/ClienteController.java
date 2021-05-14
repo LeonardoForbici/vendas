@@ -1,5 +1,7 @@
 package br.com.examplo.vendas.rest;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -41,7 +43,8 @@ public class ClienteController {
 
 	@GetMapping("{id}")
 	public Cliente encontrarPorId(@PathVariable Integer id) {
-		return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+		return repository.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 
 	@DeleteMapping("{id}")
@@ -54,7 +57,7 @@ public class ClienteController {
 	}
 
 	@PutMapping("{id}")
-	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void atualizar(@PathVariable Integer id, @RequestBody Cliente clienteAtualizado) {
 		repository.findById(id).map(cliente -> {
 			cliente.setNome(clienteAtualizado.getNome());
@@ -62,9 +65,15 @@ public class ClienteController {
 			return repository.save(clienteAtualizado);
 		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
-	
+
 	@GetMapping
-	public List<Cliente> obterTodos(){
-		return repository.findAll();
+	public List<Cliente> obterTodos() {
+		List<Cliente> findAll = repository.findAll();
+		Collections.sort(findAll, new Comparator<Cliente>() {
+			public int compare(Cliente o1, Cliente o2) {
+				return o1.getDataGravacao().compareTo(o2.getDataGravacao());
+			}
+		});
+		return findAll;
 	}
 }
