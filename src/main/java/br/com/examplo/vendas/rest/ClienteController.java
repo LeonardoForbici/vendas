@@ -71,7 +71,7 @@ public class ClienteController {
 		List<Cliente> findAll = repository.findAll();
 		Collections.sort(findAll, new Comparator<Cliente>() {
 			public int compare(Cliente o1, Cliente o2) {
-				return o1.getDataGravacao().compareTo(o2.getDataGravacao());
+				return o2.getId().compareTo(o1.getId());
 			}
 		});
 		return findAll;
