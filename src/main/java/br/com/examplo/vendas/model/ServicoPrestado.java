@@ -1,6 +1,7 @@
 package br.com.examplo.vendas.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,20 +17,22 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Servico {
+public class ServicoPrestado {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(nullable = false, length = 150)
 	private String descricao;
-	
+
 	@ManyToOne
-	@JoinColumn(name="idCliente")
-	private Cliente pessoa;
-	
-	@Column()
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
+
+	@Column
 	private BigDecimal valor;
-	
+
+	@Column
+	private LocalDate data;
 }
