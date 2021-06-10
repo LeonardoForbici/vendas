@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -32,10 +33,10 @@ public class ServicoPrestado {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	@Column
+	@Column(nullable = false)
 	private BigDecimal valor;
 
-	@Column
+	@Column(nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data;
 }
