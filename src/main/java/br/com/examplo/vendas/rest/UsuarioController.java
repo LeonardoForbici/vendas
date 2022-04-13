@@ -3,6 +3,7 @@
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +13,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.examplo.vendas.exception.UsuarioCadastradoException;
 import br.com.examplo.vendas.model.Usuario;
-import br.com.examplo.vendas.model.repository.UsuarioRepository;
 import br.com.examplo.vendas.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UsuarioController {
 	
 	
