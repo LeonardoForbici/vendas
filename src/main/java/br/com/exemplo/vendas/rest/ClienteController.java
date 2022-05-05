@@ -1,8 +1,9 @@
-package br.com.examplo.vendas.rest;
+package br.com.exemplo.vendas.rest;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import javax.validation.Valid;
 
@@ -20,8 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.examplo.vendas.model.Cliente;
-import br.com.examplo.vendas.model.repository.ClienteRepository;
+import br.com.exemplo.vendas.model.Cliente;
+import br.com.exemplo.vendas.model.repository.ClienteRepository;
+import br.com.exemplo.vendas.model.repository.ServicoPrestadoRepository;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -29,10 +31,12 @@ import br.com.examplo.vendas.model.repository.ClienteRepository;
 public class ClienteController {
 
 	private final ClienteRepository repository;
+	private final ServicoPrestadoRepository servicoPrestadorepository;
 
 	@Autowired
-	public ClienteController(ClienteRepository repository) {
+	public ClienteController(ClienteRepository repository, ServicoPrestadoRepository servicoPrestadorepository) {
 		this.repository = repository;
+		this.servicoPrestadorepository = servicoPrestadorepository;
 	}
 
 	@PostMapping()

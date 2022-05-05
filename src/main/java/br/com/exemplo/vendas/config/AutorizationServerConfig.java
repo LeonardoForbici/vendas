@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.config;
+package br.com.exemplo.vendas.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

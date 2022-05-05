@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.config;
+package br.com.exemplo.vendas.config;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,10 +1,10 @@
-package br.com.examplo.vendas.model.repository;
+package br.com.exemplo.vendas.model.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.examplo.vendas.model.Usuario;
+import br.com.exemplo.vendas.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 

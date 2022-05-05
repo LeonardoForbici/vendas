@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.rest;
+package br.com.exemplo.vendas.rest;
 
 import java.util.Arrays;
 import java.util.List;

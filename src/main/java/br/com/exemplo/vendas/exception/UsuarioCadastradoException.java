@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.exception;
+package br.com.exemplo.vendas.exception;
 
 public class UsuarioCadastradoException extends RuntimeException{
 

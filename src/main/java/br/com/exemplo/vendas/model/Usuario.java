@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.model;
+package br.com.exemplo.vendas.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

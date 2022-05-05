@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.service;
+package br.com.exemplo.vendas.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.examplo.vendas.exception.UsuarioCadastradoException;
-import br.com.examplo.vendas.model.Usuario;
-import br.com.examplo.vendas.model.repository.UsuarioRepository;
+import br.com.exemplo.vendas.exception.UsuarioCadastradoException;
+import br.com.exemplo.vendas.model.Usuario;
+import br.com.exemplo.vendas.model.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService implements UserDetailsService {

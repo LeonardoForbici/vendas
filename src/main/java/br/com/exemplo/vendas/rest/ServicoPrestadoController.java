@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.rest;
+package br.com.exemplo.vendas.rest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.examplo.vendas.model.Cliente;
-import br.com.examplo.vendas.model.ServicoPrestado;
-import br.com.examplo.vendas.model.dto.ServicoPrestadoDTO;
-import br.com.examplo.vendas.model.repository.ClienteRepository;
-import br.com.examplo.vendas.model.repository.ServicoPrestadoRepository;
-import br.com.examplo.vendas.util.BigDecimalConverter;
+import br.com.exemplo.vendas.model.Cliente;
+import br.com.exemplo.vendas.model.ServicoPrestado;
+import br.com.exemplo.vendas.model.dto.ServicoPrestadoDTO;
+import br.com.exemplo.vendas.model.repository.ClienteRepository;
+import br.com.exemplo.vendas.model.repository.ServicoPrestadoRepository;
+import br.com.exemplo.vendas.util.BigDecimalConverter;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -56,7 +56,21 @@ public class ServicoPrestadoController {
 	public List<ServicoPrestado> pesquisar(@RequestParam(value = "nome", required = false) String nome,
 			@RequestParam(value = "mes", required = false) Integer mes) {
 
-		return servicoPrestadorepository.findByNomeClienteAndMes("%" + nome + "%", mes);
+		boolean nomeIndefinido = false;
+
+		if (nome.equals("undefined")) {
+			nomeIndefinido = true;
+		}
+
+		if ((!nomeIndefinido || nome.isEmpty()) && mes != null) {
+			return servicoPrestadorepository.findByNomeClienteAndMes("%" + nome + "%", mes);
+		}else if(mes != null) {
+			return servicoPrestadorepository.findByMes(mes);
+		}else if((!nomeIndefinido && !nome.isEmpty())) {
+			return servicoPrestadorepository.findByNome(nome);
+		}else {
+			return servicoPrestadorepository.findAll();
+		}
 
 	}
 }

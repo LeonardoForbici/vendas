@@ -1,4 +1,4 @@
- package br.com.examplo.vendas.rest;
+ package br.com.exemplo.vendas.rest;
 
 import javax.validation.Valid;
 
@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.examplo.vendas.exception.UsuarioCadastradoException;
-import br.com.examplo.vendas.model.Usuario;
-import br.com.examplo.vendas.service.UsuarioService;
+import br.com.exemplo.vendas.exception.UsuarioCadastradoException;
+import br.com.exemplo.vendas.model.Usuario;
+import br.com.exemplo.vendas.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
-@CrossOrigin("*")
 public class UsuarioController {
 	
 	

@@ -1,4 +1,4 @@
-package br.com.examplo.vendas.model;
+package br.com.exemplo.vendas.model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
